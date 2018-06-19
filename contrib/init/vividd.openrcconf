@@ -1,0 +1,26 @@
+# /etc/conf.d/vividd: config file for /etc/init.d/vividd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/vivid/vivid.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/vividd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/vividd.pid"
+
+# Where to write vividd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/vividd"
+
+# User and group to own vividd process
+#BITCOIND_USER="vivid"
+#BITCOIND_GROUP="vivid"
+
+# Path to vividd executable
+#BITCOIND_BIN="/usr/bin/vividd"
+
+# Nice value to run vividd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

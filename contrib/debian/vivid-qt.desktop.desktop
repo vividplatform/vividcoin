@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Vivid
+Comment=Vivid P2P Cryptocurrency
+Exec=vivid-qt %u
+Terminal=false
+Type=Application
+Icon=vivid128
+MimeType=x-scheme-handler/vivid;
+Categories=Office;Finance;
+Name[en_US]=vivid-qt.desktop

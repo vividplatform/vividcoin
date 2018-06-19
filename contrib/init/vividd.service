@@ -1,0 +1,26 @@
+[Unit]
+Description=Vivid's distributed currency daemon
+After=network.target
+
+[Service]
+User=vivid
+Group=vivid
+
+Type=forking
+PIDFile=/var/lib/vividd/vividd.pid
+
+ExecStart=/usr/bin/vividd -daemon -pid=/var/lib/vividd/vividd.pid \
+          -conf=/etc/vivid/vivid.conf -datadir=/var/lib/vividd
+
+ExecStop=-/usr/bin/vivid-cli -conf=/etc/vivid/vivid.conf \
+         -datadir=/var/lib/vividd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

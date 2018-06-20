@@ -2,7 +2,7 @@ Vivid Core 1.0.0.1
 =================================================
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/vividcoin/vivid/master/doc/bitcoin_logo_doxygen.png" width="256" />
+  <img src="https://raw.githubusercontent.com/vividplatform/vividcoin/master/doc/bitcoin_logo_doxygen.png" width="256" />
 </p>
 
 

@@ -2,7 +2,7 @@ Vivid Core 1.0.0.1
 =================================================
 
 <p align="center">
-  <img src="https://github.com/vividplatform/vividcoin/raw/master/doc/bitcoin_logo_doxygen.png" width="256" />
+  <img src="https://raw.githubusercontent.com/vividcoin/vivid/master/doc/bitcoin_logo_doxygen.png" width="256" />
 </p>
 
 
@@ -13,7 +13,7 @@ VividCoin is a custom Blockchain, backed by Masternodes, designed to give the Vi
 
 - Website: https://vividcoin.app
 - White paper: 
-- Explorer: http://vividblockexplorer.com/
+- Explorer: http://explore.vividcoin.app/
 - Twitter: 
 - Instagram: 
 - Github: https://github.com/vividplatform/

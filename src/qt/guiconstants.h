@@ -28,11 +28,11 @@ static const bool DEFAULT_SPLASHSCREEN = true;
 /* Transaction list -- bare address (without label) */
 #define COLOR_BAREADDRESS QColor(140, 140, 140)
 /* Transaction list -- TX status decoration - open until date */
-#define COLOR_TX_STATUS_OPENUNTILDATE QColor(51, 51, 51)
+#define COLOR_TX_STATUS_OPENUNTILDATE QColor(255, 255, 255)
 /* Transaction list -- TX status decoration - offline */
 #define COLOR_TX_STATUS_OFFLINE QColor(192, 192, 192)
 /* Transaction list -- TX status decoration - default color */
-#define COLOR_BLACK QColor(51, 51, 51)
+#define COLOR_BLACK QColor(255, 255, 255)
 /* Transaction list -- TX status decoration - conflicted */
 #define COLOR_CONFLICTED QColor(255, 0, 0)
 

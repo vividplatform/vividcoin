@@ -12,13 +12,11 @@ VividCoin is a custom Blockchain, backed by Masternodes, designed to give the Vi
 ## Links:
 
 - Website: https://vividcoin.app
-- White paper: 
+- White paper: TBA
 - Explorer: http://explore.vividcoin.app/
-- Twitter: 
-- Instagram: 
+- Twitter: https://twitter.com/vividplatform
 - Github: https://github.com/vividplatform/
-- Telegram#1: 
-- Telegram#2: 
+- Telegram#1:  https://t.me/vividtoken
 
 
 License

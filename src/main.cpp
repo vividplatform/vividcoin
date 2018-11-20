@@ -56,7 +56,7 @@ using namespace std;
 #define BIGNUM_SIZE   4
 
 // Determines the blockheight at which vin checking becomes active.
-#define INPUT_CHECK_HEIGHT 219990
+#define INPUT_CHECK_HEIGHT 220900
 
 /**
  * Global state

@@ -1893,7 +1893,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
         }
 
         if (!tx.IsCoinStake()) {
-            if (pindexPrev->nHeight >= INPUT_CHECK_HEIGHT){
+            if (chainActive.Height() >= INPUT_CHECK_HEIGHT){
                 if (nValueIn < tx.GetValueOut())
                     return state.DoS(100, error("CheckInputs() : %s value in (%s) < value out (%s)",
                                 tx.GetHash().ToString(), FormatMoney(nValueIn), FormatMoney(tx.GetValueOut())),
@@ -1903,7 +1903,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
             // Tally transaction fees
             CAmount nTxFee = nValueIn - tx.GetValueOut();
 
-            if (pindexPrev->nHeight >= INPUT_CHECK_HEIGHT){
+            if (chainActive.Height() >= INPUT_CHECK_HEIGHT){
                 if (nTxFee < 0)
                     return state.DoS(100, error("CheckInputs() : %s nTxFee < 0", tx.GetHash().ToString()),
                             REJECT_INVALID, "bad-txns-fee-negative");
@@ -1911,7 +1911,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
 
             nFees += nTxFee;
 
-            if (pindexPrev->nHeight >= INPUT_CHECK_HEIGHT){
+            if (chainActive.Height() >= INPUT_CHECK_HEIGHT){
                 if (!MoneyRange(nFees))
                     return state.DoS(100, error("CheckInputs() : nFees out of range"),
                             REJECT_INVALID, "bad-txns-fee-outofrange");

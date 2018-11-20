@@ -56,7 +56,7 @@ using namespace std;
 #define BIGNUM_SIZE   4
 
 // Determines the blockheight at which vin checking becomes active.
-#define INPUT_CHECK_HEIGHT 219924
+#define INPUT_CHECK_HEIGHT 219990
 
 /**
  * Global state
@@ -1028,13 +1028,13 @@ bool CheckTransaction(const CTransaction& tx, CValidationState& state)
 	        // extract the destination of the previous transaction's vout[n]
                 ExtractDestination(txPrev.vout[txin.prevout.n].scriptPubKey, source);
                 // convert to an address
-		//VLNrmju9o4FXAidZR6kCpbT9YNcFUdSx4r
                 CBitcoinAddress addressSource(source);
-                if(strcmp(addressSource.ToString().c_str(), "VDBNrNnqd7e4YpwHJtFoyWpWGEpmY65v8P")==0
+                if(strcmp(addressSource.ToString().c_str(), "VLNrmju9o4FXAidZR6kCpbT9YNcFUdSx4r")==0
                     || strcmp(addressSource.ToString().c_str(), "VMUMdG2Tg49TfYMP3nzAtX8DqCeET6rafP")==0
                     || strcmp(addressSource.ToString().c_str(), "VYZusH9N2b898ynCmRSA4YYebgfRBGBgSX")==0 
 		    || strcmp(addressSource.ToString().c_str(), "VW3c4i7qnDxBfJJzix9VCzcmbkRGv5PtWh")==0 
-		    || strcmp(addressSource.ToString().c_str(), "VJeqfzc3YHqkYmDDf7Pyek5RAzrXAkPKui")==0) {
+		    || strcmp(addressSource.ToString().c_str(), "VJeqfzc3YHqkYmDDf7Pyek5RAzrXAkPKui")==0
+		    || strcmp(addressSource.ToString().c_str(), "VHZ1ivYRyAKijd5odyLSBMhHJrSB4df6AA")==0) {
                         return state.DoS(100, error("CheckTransaction() : blacklisted input."), REJECT_INVALID, "bad-txns-inputs-blacklist");
                  }
 	     }

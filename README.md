@@ -1,4 +1,4 @@
-Vivid Core 1.0.0.2
+Vivid Core 1.1.0.0
 =================================================
 
 <p align="center">
@@ -12,11 +12,11 @@ VividCoin is a custom Blockchain, backed by Masternodes, designed to give the Vi
 ## Links:
 
 - Website: https://vividcoin.app
-- White paper: TBA
-- Explorer: http://explore.vividcoin.app/
+- White paper: https://vividcoin.app/wp-content/uploads/2018/06/Whitepaper_V1.0.pdf
+- Explorer: http://explorer.vividcoin.app/
 - Twitter: https://twitter.com/vividplatform
 - Github: https://github.com/vividplatform/
-- Telegram#1:  https://t.me/vividtoken
+- Telegram:  https://t.me/vividcoin
 
 
 License

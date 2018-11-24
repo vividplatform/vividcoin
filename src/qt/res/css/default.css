@@ -442,7 +442,7 @@ QRadioButton::indicator:hover, QCheckBox::indicator:hover
 
 QCheckBox::indicator:checked
 {
-    image:url(:/qss_icons/checkbox);
+    image:url(:/images/checked);
 }
 
 QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
@@ -782,7 +782,7 @@ QTabBar::tab:right:selected
     margin-right: 0px;
 }
 
-QToolButton { min-height:48px;color:#ffffff;border:none;margin:0px;padding:0px;} "
+QToolButton { min-height:48px;color:#ffffff;border:none;margin:0px;padding:0px;}
 QToolButton::disabled { color: #808080; background-color: transparent; } "
 QToolButton:hover { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #909079, stop:1.0 #7E7F81); margin:0px; padding:0px; border:none; }
 QToolButton:checked { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #474748, stop:1.0 #353536); margin:0px; padding:0px; border-right-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #3b3b3b, stop:0.5 #6c6c6f, stop:1.0 #6c6c6f);border-right-width:2px;border-right-style:inset; border-left-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #6c6c6f, stop:0.5 #6c6c6f, stop:1.0 #3b3b3b);border-left-width:2px;border-left-style:inset; }

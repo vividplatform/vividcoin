@@ -165,7 +165,14 @@ bool CCoinsViewDB::GetStats(CCoinsStats& stats) const
     }
     stats.nHeight = mapBlockIndex.find(GetBestBlock())->second->nHeight;
     stats.hashSerialized = ss.GetHash();
-    stats.nTotalAmount = nTotalAmount;
+
+    if (stats.nHeight >= SUPPLY_FIX_HEIGHT) {
+        // subtract blacklisted funds from total supply as they cant be moved anyways.
+        stats.nTotalAmount = nTotalAmount - BLACKLISTED_SUPPLY;
+    } else {
+        stats.nTotalAmount = nTotalAmount;
+    }
+
     return true;
 }
 

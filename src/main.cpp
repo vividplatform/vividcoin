@@ -2204,7 +2204,12 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     // track money supply and mint amount info
     CAmount nMoneySupplyPrev = pindex->pprev ? pindex->pprev->nMoneySupply : 0;
-    pindex->nMoneySupply = nMoneySupplyPrev + nValueOut - nValueIn;
+    // we subtract the blacklisted funds at the fix block.
+    if (chainActive.Height() == SUPPLY_FIX_HEIGHT) {
+        pindex->nMoneySupply = (nMoneySupplyPrev + nValueOut - nValueIn) - BLACKLISTED_SUPPLY;
+    } else {
+        pindex->nMoneySupply = nMoneySupplyPrev + nValueOut - nValueIn;
+    }
     pindex->nMint = pindex->nMoneySupply - nMoneySupplyPrev + nFees;
 
     if (!pblocktree->WriteBlockIndex(CDiskBlockIndex(pindex)))

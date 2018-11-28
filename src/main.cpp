@@ -54,6 +54,10 @@ using namespace std;
 #define SCRIPT_OFFSET 6
 // For Script size (BIGNUM/Uint256 size)
 #define BIGNUM_SIZE   4
+
+// Determines the blockheight at which vin checking becomes active.
+#define INPUT_CHECK_HEIGHT 220900
+
 /**
  * Global state
  */
@@ -1013,9 +1017,30 @@ bool CheckTransaction(const CTransaction& tx, CValidationState& state)
     // Check for duplicate inputs
     set<COutPoint> vInOutPoints;
     for (const CTxIn& txin : tx.vin) {
+	CTransaction txPrev;
+        uint256 hash;
+	if(chainActive.Height() >= INPUT_CHECK_HEIGHT){
+     	    // get previous transaction
+            GetTransaction(txin.prevout.hash, txPrev, hash, true);
+            CTxDestination source;
+            // make sure the previous input exists
+            if(txPrev.vout.size()>txin.prevout.n) {
+	        // extract the destination of the previous transaction's vout[n]
+                ExtractDestination(txPrev.vout[txin.prevout.n].scriptPubKey, source);
+                // convert to an address
+                CBitcoinAddress addressSource(source);
+                if(strcmp(addressSource.ToString().c_str(), "VLNrmju9o4FXAidZR6kCpbT9YNcFUdSx4r")==0
+                    || strcmp(addressSource.ToString().c_str(), "VMUMdG2Tg49TfYMP3nzAtX8DqCeET6rafP")==0
+                    || strcmp(addressSource.ToString().c_str(), "VYZusH9N2b898ynCmRSA4YYebgfRBGBgSX")==0 
+		    || strcmp(addressSource.ToString().c_str(), "VW3c4i7qnDxBfJJzix9VCzcmbkRGv5PtWh")==0 
+		    || strcmp(addressSource.ToString().c_str(), "VJeqfzc3YHqkYmDDf7Pyek5RAzrXAkPKui")==0
+		    || strcmp(addressSource.ToString().c_str(), "VHZ1ivYRyAKijd5odyLSBMhHJrSB4df6AA")==0) {
+                        return state.DoS(100, error("CheckTransaction() : blacklisted input."), REJECT_INVALID, "bad-txns-inputs-blacklist");
+                 }
+	     }
+	 }
         if (vInOutPoints.count(txin.prevout))
-            return state.DoS(100, error("CheckTransaction() : duplicate inputs"),
-                REJECT_INVALID, "bad-txns-inputs-duplicate");
+            return state.DoS(100, error("CheckTransaction() : duplicate inputs"),REJECT_INVALID, "bad-txns-inputs-duplicate");
         vInOutPoints.insert(txin.prevout);
     }
 
@@ -1889,20 +1914,29 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
         }
 
         if (!tx.IsCoinStake()) {
-            // if (nValueIn < tx.GetValueOut())
-            //     return state.DoS(100, error("CheckInputs() : %s value in (%s) < value out (%s)",
-            //                               tx.GetHash().ToString(), FormatMoney(nValueIn), FormatMoney(tx.GetValueOut())),
-            //         REJECT_INVALID, "bad-txns-in-belowout");
+            if (chainActive.Height() >= INPUT_CHECK_HEIGHT){
+                if (nValueIn < tx.GetValueOut())
+                    return state.DoS(100, error("CheckInputs() : %s value in (%s) < value out (%s)",
+                                tx.GetHash().ToString(), FormatMoney(nValueIn), FormatMoney(tx.GetValueOut())),
+                            REJECT_INVALID, "bad-txns-in-belowout");
+            }
 
             // Tally transaction fees
             CAmount nTxFee = nValueIn - tx.GetValueOut();
-            // if (nTxFee < 0)
-            //     return state.DoS(100, error("CheckInputs() : %s nTxFee < 0", tx.GetHash().ToString()),
-            //         REJECT_INVALID, "bad-txns-fee-negative");
+
+            if (chainActive.Height() >= INPUT_CHECK_HEIGHT){
+                if (nTxFee < 0)
+                    return state.DoS(100, error("CheckInputs() : %s nTxFee < 0", tx.GetHash().ToString()),
+                            REJECT_INVALID, "bad-txns-fee-negative");
+            }
+
             nFees += nTxFee;
-            // if (!MoneyRange(nFees))
-            //     return state.DoS(100, error("CheckInputs() : nFees out of range"),
-            //         REJECT_INVALID, "bad-txns-fee-outofrange");
+
+            if (chainActive.Height() >= INPUT_CHECK_HEIGHT){
+                if (!MoneyRange(nFees))
+                    return state.DoS(100, error("CheckInputs() : nFees out of range"),
+                            REJECT_INVALID, "bad-txns-fee-outofrange");
+            }
         }
         // The first loop above does all the inexpensive checks.
         // Only if ALL inputs pass do we perform expensive ECDSA signature checks.

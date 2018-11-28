@@ -14,20 +14,6 @@
 
 #include <boost/thread.hpp>
 
-// This was determined by summing the balances of the following blacklisted addresses:
-// - VLNrmju9o4FXAidZR6kCpbT9YNcFUdSx4r 2600000000000
-// - VMUMdG2Tg49TfYMP3nzAtX8DqCeET6rafP 2300000000000
-// - VYZusH9N2b898ynCmRSA4YYebgfRBGBgSX 1004000000000
-// - VW3c4i7qnDxBfJJzix9VCzcmbkRGv5PtWh 571903421840
-// - VJeqfzc3YHqkYmDDf7Pyek5RAzrXAkPKui 3000000000
-// - VHZ1ivYRyAKijd5odyLSBMhHJrSB4df6AA 25025929500000
-#define BLACKLISTED_SUPPLY 31504832921840
-
-// Specifices the block from what point onward we subtract the blacklisted supply.
-// This block wasn't first, but was the first to introduce a spoof above 20k.
-// Hash: 7d7f9da087eefac4d5434356b4a5c3536b0f61217096b07445c18d9ea60066b0
-#define SUPPLY_FIX_HEIGHT 219958
-
 using namespace std;
 
 void static BatchWriteCoins(CLevelDBBatch& batch, const uint256& hash, const CCoins& coins)

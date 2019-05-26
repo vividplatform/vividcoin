@@ -143,14 +143,14 @@ QAbstractItemView
 {
     alternate-background-color: #3A3939;
     color: silver;
-    border: 1px solid 3A3939;
-    border-radius: 3px;
+    /*border: 1px solid 3A3939;
+    border-radius: 3px;*/
     padding: 1px;
 }
 
 QWidget:focus, QMenuBar:focus
 {
-    border: 1px solid rgba(48, 86, 111);
+    /*border: 1px solid rgba(48, 86, 111);*/
 }
 
 QTabWidget:focus, QCheckBox:focus, QRadioButton:focus
@@ -182,9 +182,9 @@ QGroupBox::title {
 }
 
 QAbstractScrollArea
-{
-    border-radius: 3px;
-    border: 1px solid #3A3939;
+{	
+    /*border-radius: 3px;
+    border: 1px solid #3A3939;*/
 }
 
 QScrollBar:horizontal
